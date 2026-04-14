@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Cotizaciones | Triad</title>
+    <link rel="icon" href="assets/Images/Icono.png">
+    <script src="https://kit.fontawesome.com/96f765c910.js" crossorigin="anonymous"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2ff;
+            min-height: 100vh;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #7052ff, #4f03e3);
+            color: #fff;
+            padding: 18px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 12px rgba(80,3,228,0.25);
+        }
+        .admin-header h1 { font-size: 1.3rem; font-weight: 700; }
+        .admin-header a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+        .admin-header a:hover { background: rgba(255,255,255,0.15); }
+
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            padding: 20px 32px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px 28px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 180px;
+        }
+        .stat-icon {
+            font-size: 2rem;
+            background: #f0f2ff;
+            width: 52px; height: 52px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: #7052ff;
+        }
+        .stat-info span { font-size: 12px; color: #888; }
+        .stat-info strong { display: block; font-size: 1.8rem; color: #1a1a2e; }
+
+        .panel {
+            margin: 0 32px 32px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+            overflow: hidden;
+        }
+        .panel-header {
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .panel-header h2 { font-size: 1rem; color: #1a1a2e; }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 6px 14px;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 13px;
+            width: 200px;
+        }
+
+        .table-wrap { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+        thead th {
+            background: #f7f5ff;
+            color: #5503f4;
+            font-weight: 700;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            border-bottom: 2px solid #ede8ff;
+        }
+        tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.15s;
+        }
+        tbody tr:hover { background: #faf9ff; }
+        tbody td { padding: 12px 16px; color: #333; vertical-align: middle; }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #f0f2ff;
+            color: #7052ff;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background 0.15s;
+        }
+        .btn-edit { color: #7052ff; }
+        .btn-edit:hover { background: #f0f2ff; }
+        .btn-delete { color: #e53935; }
+        .btn-delete:hover { background: #fff0f0; }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #aaa;
+        }
+        .empty-state i { font-size: 3rem; margin-bottom: 12px; display: block; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: slideUp 0.2s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .modal h3 { margin-bottom: 20px; color: #1a1a2e; }
+        .modal label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #444; }
+        .modal input, .modal textarea {
+            width: 100%; padding: 10px 14px;
+            border: 1px solid #ddd; border-radius: 8px;
+            font-size: 14px; margin-bottom: 14px;
+            outline: none; transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .modal input:focus, .modal textarea:focus { border-color: #7052ff; }
+        .modal textarea { height: 90px; resize: vertical; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; }
+        .btn-cancel {
+            padding: 9px 22px; border-radius: 8px;
+            border: 1px solid #ddd; background: #fff;
+            cursor: pointer; font-size: 13px; font-weight: 600; color: #555;
+        }
+        .btn-save {
+            padding: 9px 22px; border-radius: 8px;
+            border: none; background: #7052ff; color: #fff;
+            cursor: pointer; font-size: 13px; font-weight: 700;
+            transition: background 0.2s;
+        }
+        .btn-save:hover { background: #5a3dd4; }
+
+        .toast {
+            position: fixed; bottom: 28px; right: 28px;
+            background: #1a1a2e; color: #fff;
+            padding: 13px 22px; border-radius: 10px;
+            font-size: 14px; font-weight: 500;
+            transform: translateY(80px); opacity: 0;
+            transition: all 0.3s ease; z-index: 9999;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: #1b5e20; }
+        .toast.error   { background: #b71c1c; }
+
+        @media (max-width: 600px) {
+            .stats-bar, .panel { margin: 0 12px 20px; padding: 0; }
+            .admin-header { padding: 14px 16px; }
+            .panel-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MODAL LOGIN -->
+<div class="modal-overlay active" id="loginModal">
+    <div class="modal" style="max-width:380px">
+        <h3 style="text-align:center;margin-bottom:8px"><i class="fa fa-lock"></i> Acceso Admin</h3>
+        <p style="text-align:center;color:#888;font-size:13px;margin-bottom:20px">Ingresa tus credenciales para continuar</p>
+        <div id="login-error" style="display:none;background:#fff0f0;color:#b71c1c;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px"></div>
+        <label>Usuario</label>
+        <input type="text" id="login-usuario" placeholder="admin" style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:14px;outline:none">
+        <label>Contraseña</label>
+        <input type="password" id="login-password" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:20px;outline:none">
+        <button class="btn-save" style="width:100%;padding:11px" onclick="doLogin()">
+            <i class="fa fa-sign-in"></i> Ingresar
+        </button>
+    </div>
+</div>
+
+<!-- CONTENIDO ADMIN (oculto hasta login) -->
+<div id="adminContent" style="display:none">
+
+<header class="admin-header">
+    <h1><i class="fa fa-table"></i> &nbsp;Panel Admin — Cotizaciones</h1>
+    <a href="index.html"><i class="fa fa-arrow-left"></i> Volver al sitio</a>
+</header>
+
+<div class="stats-bar">
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-inbox"></i></div>
+        <div class="stat-info">
+            <span>Total registros</span>
+            <strong id="total-count">—</strong>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-calendar"></i></div>
+        <div class="stat-info">
+            <span>Más reciente</span>
+            <strong id="latest-date" style="font-size:1rem;">—</strong>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <h2><i class="fa fa-list"></i> &nbsp;Listado de Cotizaciones</h2>
+        <div class="search-box">
+            <i class="fa fa-search" style="color:#aaa;font-size:13px"></i>
+            <input type="text" id="searchInput" placeholder="Buscar por nombre o correo…" oninput="filterTable()">
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table id="cotizTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>NOMBRE</th>
+                    <th>TELÉFONO</th>
+                    <th>CORREO</th>
+                    <th>MENSAJE</th>
+                    <th>FECHA</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td colspan="7">
+                        <div class="empty-state">
+                            <i class="fa fa-spinner fa-spin"></i>
+                            Cargando datos…
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-overlay" id="editModal">
+    <div class="modal">
+        <h3><i class="fa fa-edit"></i> Editar Cotización</h3>
+        <input type="hidden" id="edit-id">
+        <label>Nombres y Apellidos</label>
+        <input type="text" id="edit-nombres" placeholder="Nombres completos" required>
+        <label>Teléfono</label>
+        <input type="text" id="edit-telefono" placeholder="Número de teléfono" required>
+        <label>Correo Electrónico</label>
+        <input type="email" id="edit-correo" placeholder="correo@ejemplo.com" required>
+        <label>Mensaje</label>
+        <textarea id="edit-mensaje" placeholder="Mensaje del cliente…"></textarea>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+            <button class="btn-save" onclick="saveEdit()"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    const API = 'http://localhost:3000/api/cotizar';
+    let allData = [];
+
+    async function loadData() {
+        try {
+            const res = await fetch(API);
+            if (!res.ok) throw new Error('Sin respuesta del servidor');
+            allData = await res.json();
+            renderTable(allData);
+            document.getElementById('total-count').textContent = allData.length;
+            if (allData.length > 0) {
+                const d = new Date(allData[0].fecha_registro);
+                document.getElementById('latest-date').textContent =
+                    d.toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
+            }
+        } catch (e) {
+            document.getElementById('tableBody').innerHTML = `
+                <tr><td colspan="7">
+                    <div class="empty-state">
+                        <i class="fa fa-exclamation-triangle" style="color:#e53935"></i>
+                        No se pudo conectar al servidor.<br>
+                        <small>Asegúrate que <strong>node server.js</strong> esté corriendo.</small>
+                    </div>
+                </td></tr>`;
+        }
+    }
+
+    function renderTable(data) {
+        const body = document.getElementById('tableBody');
+        if (data.length === 0) {
+            body.innerHTML = `<tr><td colspan="7"><div class="empty-state"><i class="fa fa-inbox"></i>No hay cotizaciones registradas aún.</div></td></tr>`;
+            return;
+        }
+        body.innerHTML = data.map(r => {
+            const fecha = new Date(r.fecha_registro).toLocaleString('es-PE', {
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            const msg = r.mensaje ? (r.mensaje.length > 50 ? r.mensaje.slice(0, 50) + '…' : r.mensaje) : '<span style="color:#ccc">—</span>';
+            return `
+            <tr>
+                <td><span class="badge">#${r.id}</span></td>
+                <td><strong>${esc(r.nombres)}</strong></td>
+                <td>${esc(r.telefono)}</td>
+                <td><a href="mailto:${esc(r.correo)}" style="color:#7052ff">${esc(r.correo)}</a></td>
+                <td style="max-width:200px;color:#666">${msg}</td>
+                <td style="white-space:nowrap;color:#888;font-size:12px">${fecha}</td>
+                <td style="white-space:nowrap">
+                    <button class="action-btn btn-edit" title="Editar" onclick="openEdit(${r.id})">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="action-btn btn-delete" title="Eliminar" onclick="deleteCotizacion(${r.id})">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    function filterTable() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = allData.filter(r =>
+            r.nombres.toLowerCase().includes(q) ||
+            r.correo.toLowerCase().includes(q) ||
+            (r.telefono && r.telefono.includes(q))
+        );
+        renderTable(filtered);
+    }
+
+    async function openEdit(id) {
+        const r = allData.find(x => x.id === id);
+        if (!r) return;
+        document.getElementById('edit-id').value = r.id;
+        document.getElementById('edit-nombres').value = r.nombres;
+        document.getElementById('edit-telefono').value = r.telefono;
+        document.getElementById('edit-correo').value = r.correo;
+        document.getElementById('edit-mensaje').value = r.mensaje || '';
+        document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('editModal').classList.remove('active');
+    }
+
+    async function saveEdit() {
+        const id = document.getElementById('edit-id').value;
+        const data = {
+            nombres:  document.getElementById('edit-nombres').value,
+            telefono: document.getElementById('edit-telefono').value,
+            correo:   document.getElementById('edit-correo').value,
+            mensaje:  document.getElementById('edit-mensaje').value,
+        };
+        try {
+            const res = await fetch(`${API}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (!res.ok) throw new Error();
+            showToast('✅ Cotización actualizada', 'success');
+            closeModal();
+            loadData();
+        } catch {
+            showToast('❌ Error al actualizar', 'error');
+        }
+    }
+
+    async function deleteCotizacion(id) {
+        if (!confirm(`¿Eliminar la cotización #${id}? Esta acción no se puede deshacer.`)) return;
+        try {
+            const res = await fetch(`${API}/${id}`, { method: 'DELETE' });
+            if (!res.ok) throw new Error();
+            showToast('🗑️ Cotización eliminada', 'success');
+            loadData();
+        } catch {
+            showToast('❌ Error al eliminar', 'error');
+        }
+    }
+
+    function showToast(msg, type = '') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.className = `toast ${type} show`;
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function esc(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    document.getElementById('editModal').addEventListener('click', e => {
+        if (e.target === document.getElementById('editModal')) closeModal();
+    });
+
+    loadData();
+</script>
+</div> <!-- cierre adminContent -->
+
+<script>
+async function doLogin() {
+    const usuario = document.getElementById('login-usuario').value;
+    const password = document.getElementById('login-password').value;
+    const errorDiv = document.getElementById('login-error');
+
+    try {
+        const res = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usuario, password })
+        });
+        const json = await res.json();
+        if (res.ok) {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('adminContent').style.display = 'block';
+            sessionStorage.setItem('adminLogueado', json.usuario);
+        } else {
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = json.error || 'Credenciales incorrectas.';
+        }
+    } catch {
+        errorDiv.style.display = 'block';
+        errorDiv.textContent = 'No se pudo conectar al servidor.';
+    }
+}
+
+// Permitir login con Enter
+document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('loginModal').classList.contains('active')) {
+        doLogin();
+    }
+});
+
+// Si ya estaba logueado en esta sesión, saltar login
+if (sessionStorage.getItem('adminLogueado')) {
+    document.getElementById('loginModal').classList.remove('active');
+    document.getElementById('adminContent').style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Triad Agencia De Marketing</title>
+    <link rel="icon" type="image" href="assets/Images/Icono.png" alt="logo de Triad">
+    <link href="assets/css-scss/styles.css" rel="stylesheet">
+    <link href="assets/css-scss/blog.css" rel="stylesheet">
+    <meta property="og:title" content="Blog | Triad: Agencia de Marketing Digital">
+    <meta property="og:description" content="Mantente informado con los últimos artículos, tendencias y consejos de marketing digital de la agencia TRIAD.">
+    <meta property="og:image" href="assets/Images/Icono.png">
+    <meta name="robots" content="index, noarchive">
+    <meta name="description" content="Blog de TRIAD Agencia de Marketing Digital. Artículos sobre redes sociales, campañas digitales, gestión de proyectos y más.">
+    <script src="https://kit.fontawesome.com/96f765c910.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="menup1">
+                <img class="nav__logo" src="assets/Images/logo.png">
+            </div>
+            <div class="menup2" id="navMenu">
+                <ul class="nav__ul">
+                    <li class="nav__item"><a class="nav__link" href="index.html">AGENCIA</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quienessomos.html">¿QUIENES SOMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quehacemos.html">¿QUE HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Comohacemos.html">¿COMO LO HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link nav__link--active" href="Blog.html">BLOG</a></li>
+                </ul>
+            </div>
+                            <button class="nav__hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+                <div class="menup3">
+                <ul>
+                    <li class="nav__item cotizar"><a href="Cotizar.html" class="nav__link link--cotizar">COTIZAR</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="blog-main">
+        <section class="blog-hero">
+            <div class="blog-hero__content">
+                <span class="blog-hero__tag">NUESTRO BLOG</span>
+                <h1>TE <span class="color-morado">INFORMAMOS</span></h1>
+                <p>Artículos, tendencias y consejos para potenciar tu presencia digital y hacer crecer tu negocio.</p>
+            </div>
+        </section>
+
+        <section class="blog-categories">
+            <div class="blog-categories__inner">
+                <button class="cat-btn cat-btn--active" data-cat="all">Todos</button>
+                <button class="cat-btn" data-cat="redes">Redes Sociales</button>
+                <button class="cat-btn" data-cat="campanas">Campañas</button>
+                <button class="cat-btn" data-cat="web">Plataformas Web</button>
+                <button class="cat-btn" data-cat="ecommerce">E-Commerce</button>
+                <button class="cat-btn" data-cat="tips">Consejos</button>
+            </div>
+        </section>
+
+        <section class="blog-featured">
+            <div class="blog-featured__inner">
+                <div class="blog-card blog-card--featured" data-cat="redes">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider1.jpg" alt="Artículo destacado sobre redes sociales" class="blog-card__img">
+                        <span class="blog-card__category">Redes Sociales</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 20 Marzo, 2025</span>
+                        <h2 class="blog-card__title">¿Cómo dominar el algoritmo de Instagram en 2025?</h2>
+                        <p class="blog-card__summary">Descubre las estrategias más efectivas para aumentar tu alcance orgánico en Instagram y conectar con tu audiencia ideal sin gastar en publicidad.</p>
+                        <a href="#" class="blog-card__btn btnExotico">Leer más <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-grid-section">
+            <h2 class="blog-section__title">PUBLICACIONES <span class="color-morado">RECIENTES</span></h2>
+            <div class="blog-grid" id="blogGrid">
+
+                <article class="blog-card blog-card--small" data-cat="campanas">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider2.jpg" alt="Campañas digitales" class="blog-card__img">
+                        <span class="blog-card__category">Campañas</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 10 Marzo, 2025</span>
+                        <h3 class="blog-card__title">5 claves para una campaña de Facebook Ads exitosa</h3>
+                        <p class="blog-card__summary">Aprende a segmentar correctamente tu audiencia y optimizar tu presupuesto para obtener el máximo retorno en tus campañas pagadas.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card blog-card--small" data-cat="web">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider3.jpg" alt="Plataformas web" class="blog-card__img">
+                        <span class="blog-card__category">Plataformas Web</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 28 Febrero, 2025</span>
+                        <h3 class="blog-card__title">Por qué tu negocio necesita una página web en 2025</h3>
+                        <p class="blog-card__summary">Una web profesional no es un lujo, es una necesidad. Te explicamos cómo impacta directamente en tu credibilidad y ventas.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card blog-card--small" data-cat="ecommerce">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider4.jpg" alt="E-Commerce" class="blog-card__img">
+                        <span class="blog-card__category">E-Commerce</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 15 Febrero, 2025</span>
+                        <h3 class="blog-card__title">E-Commerce para PyMEs: Cómo empezar a vender online</h3>
+                        <p class="blog-card__summary">Guía completa para micro y medianas empresas que quieren dar el salto al comercio electrónico sin grandes inversiones iniciales.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card blog-card--small" data-cat="redes">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider5.jpg" alt="TikTok marketing" class="blog-card__img">
+                        <span class="blog-card__category">Redes Sociales</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 5 Febrero, 2025</span>
+                        <h3 class="blog-card__title">TikTok como herramienta de marketing para empresas</h3>
+                        <p class="blog-card__summary">TikTok dejó de ser solo entretenimiento. Descubre cómo las marcas están usando esta plataforma para generar ventas reales.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card blog-card--small" data-cat="tips">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider1.jpg" alt="Consejos de marketing" class="blog-card__img">
+                        <span class="blog-card__category">Consejos</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 20 Enero, 2025</span>
+                        <h3 class="blog-card__title">10 errores de marketing digital que debes evitar</h3>
+                        <p class="blog-card__summary">Muchos emprendedores cometen los mismos errores al iniciar su estrategia digital. Te mostramos cómo evitarlos y ahorrar tiempo y dinero.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card blog-card--small" data-cat="campanas">
+                    <div class="blog-card__img-wrap">
+                        <img src="assets/Images/slider2.jpg" alt="Google Ads" class="blog-card__img">
+                        <span class="blog-card__category">Campañas</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <span class="blog-card__date"><i class="fa fa-calendar"></i> 8 Enero, 2025</span>
+                        <h3 class="blog-card__title">Google Ads vs Meta Ads: ¿Cuál elegir para tu negocio?</h3>
+                        <p class="blog-card__summary">Comparamos las dos plataformas publicitarias más importantes del mundo para que puedas tomar la mejor decisión según tu industria y presupuesto.</p>
+                        <a href="#" class="blog-card__link">Leer más <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="blog-cta">
+            <div class="blog-cta__inner">
+                <h2>¿Listo para <span class="color-morado">impulsar</span> tu negocio?</h2>
+                <p>Agenda una consultoría gratuita y descubre cómo TRIAD puede llevar tu marca al siguiente nivel.</p>
+                <a href="Cotizar.html" class="blog-cta__btn">COTIZAR AHORA <i class="fa fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+    <footer class="Pie-pagina">
+        <div class="grupo-1">
+            <div class="boxfooter">
+                <figure>
+                    <a href="#">
+                        <img src="assets/Images/triad-footer.png" alt="Logo de Triad">
+                    </a>
+                </figure>
+            </div>
+            <div class="boxfooter">
+                <h2>CONTÁCTANOS</h2>
+                <p>Celular: 977 562 351</p>
+                <p>E-mail: hola@agenciatriad.com</p>
+                <p>Ubícanos: Jr. Parra del Riego 1549 Urb La Florida El Tambo-Huancayo</p>
+            </div>
+            <div class="boxfooter">
+                <h2>HORARIOS DE ATENCIÓN</h2>
+                <p>Lun a Vie: De 9:00 a.m. a 1:00 p.m.</p>
+                <p>De 3:00 p.m. a 7:00 p.m. </p>
+                <h3><a class="reclamacion" href="Reclamacion.html">LIBRO DE RECLAMACIONES</a></h3>
+            </div>
+            <div class="boxfooter">
+                <h2>REDES SOCIALES</h2>
+                <div class="red-social">
+                    <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-facebook" target="_blank" title="Facebook"></a>
+                    <a href="https://www.instagram.com/triadagenciademarketing/" class="fa fa-instagram" target="_blank" title="Instagram"></a>
+                    <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-linkedin" target="_blank" title="Linkedin"></a>
+                    <a href="https://www.youtube.com/@TRIADAGENCIADEMARKETING" class="fa fa-youtube" target="_blank" title="Youtube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>&copy; 2024 <b>TRIAD</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+    <script>
+        const catBtns = document.querySelectorAll('.cat-btn');
+        const cards = document.querySelectorAll('#blogGrid .blog-card--small');
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catBtns.forEach(b => b.classList.remove('cat-btn--active'));
+                btn.classList.add('cat-btn--active');
+                const cat = btn.dataset.cat;
+                cards.forEach(card => {
+                    if (cat === 'all' || card.dataset.cat === cat) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        if(hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+    </script>
+</body>
+</html>

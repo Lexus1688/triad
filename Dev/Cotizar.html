@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizar-Triad Agencia De Marketing</title>
+    <link rel="icon" type="image" href="assets/Images/Icono.png" alt="logo de Triad">
+    <link href="assets/css-scss/styles.css" rel="stylesheet">
+    <meta property="og:title" content="Triad: Agencia de Marketing Digital">
+    <meta property="og:description"
+        content="Somos una agencia de marketing digital integrada por personas apasionadas por el servicio y altamente calificadas en herramientas y plataformas de marketing digital.">
+    <meta property="og:image" href="assets/Images/Icono.png"> <!--Falta agregar la imagen -->
+    <meta property=" og:image:alt" content="Esta imagen hace relación a la empresa de Marketing Digital Triad ">
+    <meta name="robots" content="index, noarchive">
+    <meta name="description"
+        content="GESTION DE PROYECTOS. Hacemos realidad tus ideas, paso a paso. Con la metodologia de Marketing Creativo, fusionamos estos servicios en un proceso....">
+    <!--Iconos-->
+    <script src="https://kit.fontawesome.com/96f765c910.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="menup1">
+                <img class="nav__logo" src="assets/Images/logo.png">
+            </div>
+            <div class="menup2" id="navMenu">
+                <ul class="nav__ul">
+                    <li class="nav__item"><a class="nav__link" href="index.html">AGENCIA</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quienessomos.html">¿QUIENES SOMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quehacemos.html">¿QUE HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Comohacemos.html">¿COMO LO HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Blog.html">BLOG</a></li>
+                </ul>
+            </div>
+            <button class="nav__hamburger" id="hamburger"
+                aria-label="Menú"><span></span><span></span><span></span></button>
+            <div class="menup3">
+                <ul>
+                    <li class="nav__item cotizar"><a href="Cotizar.html" class="nav__link link--cotizar">COTIZAR</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="main__cotizar">
+        <div class="cotizar">
+            <div class="contenedor1">
+                <span class="titulo-cotizar">
+                    <h2>¡Hablanos de <span class="color-morado">tu Proyecto!</span></h2>
+                </span>
+                <div class="contenedor1-direccion">
+                    <img class="logo-c1" src="assets/Images/mapa.png">
+                    <p>Jr. Parra del Riego 1549 Urb La <br>Florida El Tambo - Huancayo</p>
+                </div>
+                <div class="contenedor1-tel">
+                    <img class="logo-c1" src="assets/Images/Telf.png">
+                    <p>977 562 351</p>
+                </div>
+                <div class="contenedor1-email">
+                    <img class="logo-c1" src="assets/Images/Correo.png">
+                    <p>hola@agenciatriad.com</p>
+                </div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1950.8410298483573!2d-75.224604!3d-12.065383!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e966a0aad0639%3A0xaf95b1af2e11c19b!2sJr.%20Parra%20del%20Riego%201549%2C%20Huancayo%2012004%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1719279351144!5m2!1ses!2sus"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="contenedor2">
+                <p>Queremos conocerte y conocer tu emprendimiento para poder ayudarte a de una manera creativa y
+                    diferenciarte de tu competencia en esta era digital.</p>
+                <div class="container">
+                    <div id="cotizar-msg"
+                        style="display:none;padding:12px;border-radius:8px;margin-bottom:15px;font-weight:bold;"></div>
+                    <form id="cotizarForm">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Nombres y Apellidos</span>
+                                <input type="text" id="cot_nombres" name="nombres" placeholder="Carlos Tovar Sanchez"
+                                    required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Telefono</span>
+                                <input type="text" id="cot_telefono" name="telefono" placeholder="978072316" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Correo Electronico</span>
+                                <input type="email" id="cot_correo" name="correo"
+                                    placeholder="60982244@continental.edu.pe" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Envianos un Mensaje</span>
+                                <textarea id="cot_mensaje" name="mensaje" placeholder="Comentanos......"></textarea>
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btnExotico btn-cotizar">Enviar</button>
+                            <a href="admin.html"><button class="btnExotico btn-cotizar" type="button">Mis Cotizaciones</button></a>
+                        </div>
+                    </form>
+                    <script>
+                        document.getElementById('cotizarForm').addEventListener('submit', async function (e) {
+                            e.preventDefault();
+                            const msg = document.getElementById('cotizar-msg');
+                            const data = {
+                                nombres: document.getElementById('cot_nombres').value,
+                                telefono: document.getElementById('cot_telefono').value,
+                                correo: document.getElementById('cot_correo').value,
+                                mensaje: document.getElementById('cot_mensaje').value
+                            };
+                            try {
+                                const res = await fetch('http://localhost:3000/api/cotizar', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(data)
+                                });
+                                const json = await res.json();
+                                if (res.ok) {
+                                    msg.style.background = '#d4edda';
+                                    msg.style.color = '#155724';
+                                    msg.style.display = 'block';
+                                    msg.textContent = '¡Mensaje enviado! Nos pondremos en contacto pronto.';
+                                    this.reset();
+                                } else {
+                                    msg.style.background = '#f8d7da';
+                                    msg.style.color = '#721c24';
+                                    msg.style.display = 'block';
+                                    msg.textContent = json.error || 'Ocurrió un error. Inténtalo de nuevo.';
+                                }
+                            } catch (err) {
+                                msg.style.background = '#f8d7da';
+                                msg.style.color = '#721c24';
+                                msg.style.display = 'block';
+                                msg.textContent = 'No se pudo conectar al servidor. Verifica tu conexión.';
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        if (hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+    </script>
+</body>
+<footer class="Pie-pagina">
+    <div class="grupo-1">
+        <div class="boxfooter">
+            <figure>
+                <a href="#">
+                    <img src="assets/Images/triad-footer.png" alt="Logo de Triad">
+                </a>
+            </figure>
+        </div>
+        <div class="boxfooter">
+            <h2>CONTÁCTANOS</h2>
+            <p>Celular: 977 562 351</p>
+            <p>E-mail: hola@agenciatriad.com</p>
+            <p>Ubícanos: Jr. Parra del Riego 1549 Urb La Florida El Tambo-Huancayo</p>
+        </div>
+        <div class="boxfooter">
+            <h2>HORARIOS DE ATENCIÓN</h2>
+            <p>Lun a Vie: De 9:00 a.m. a 1:00 p.m.</p>
+            <p>De 3:00 p.m. a 1:00 p.m. </p>
+            <h3>LIBRO DE RECLAMACIONES</h3>
+        </div>
+        <div class="boxfooter">
+            <h2>REDES SOCIALES</h2>
+            <div class="red-social">
+                <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-facebook"
+                    target="_blank" title="Facebook"></a>
+                <a href="https://www.instagram.com/triadagenciademarketing/" class="fa fa-instagram" target="_blank"
+                    title="Instagram"></a>
+                <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-linkedin"
+                    target="_blank" title="Linkedin"></a>
+                <a href="https://www.youtube.com/@TRIADAGENCIADEMARKETING" class="fa fa-youtube" target="_blank"
+                    title="Youtube"></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>&copy; 2024 <b>TRIAD</b> - Todos los Derechos Reservados. </p></small>
+    </div>
+</footer>
+
+</html>

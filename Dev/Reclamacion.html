@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triad Agencia De Marketing</title>
+    <link rel="icon" type="image" href="assets/Images/Icono.png" alt="logo de Triad">
+    <link href="assets/css-scss/styles.css" rel="stylesheet">
+    <meta property="og:title" content="Triad: Agencia de Marketing Digital">
+    <meta property="og:description" content="Somos una agencia de marketing digital integrada por personas apasionadas por el servicio y altamente calificadas en herramientas y plataformas de marketing digital.">
+    <meta property="og:image" href="assets/Images/Icono.png"> <!--Falta agregar la imagen -->
+    <meta property=" og:image:alt" content="Esta imagen hace relación a la empresa de Marketing Digital Triad ">
+    <meta name="robots" content="index, noarchive">
+    <meta name="description" content="GESTION DE PROYECTOS. Hacemos realidad tus ideas, paso a paso. Con la metodologia de Marketing Creativo, fusionamos estos servicios en un proceso....">
+    <!--Iconos-->
+    <script src="https://kit.fontawesome.com/96f765c910.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="menup1">
+                    <img class="nav__logo" src="assets/Images/logo.png" >
+            </div>
+            <div class="menup2" id="navMenu">
+                <ul class="nav__ul">
+                    <li class="nav__item"><a class="nav__link" href="index.html">AGENCIA</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quienessomos.html" >¿QUIENES SOMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Quehacemos.html">¿QUE HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Comohacemos.html">¿COMO LO HACEMOS?</a></li>
+                    <li class="nav__item"><a class="nav__link" href="Blog.html">BLOG</a></li>
+                </ul>
+            </div>
+                            <button class="nav__hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+                <div class="menup3">
+                <ul>
+                    <li class="nav__item cotizar"><a href="Cotizar.html" class="nav__link link--cotizar" >COTIZAR</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <span class="span__content"><h2 class="color-morado">LIBRO DE RECLAMACIONES</h2></span>
+        <div class="reclamo-container">
+            <fieldset>
+                <p>Conforme a lo establecido en el Código de Protección y Defensa del Consumidor contamos con un Libro de Reclamaciones a tu disposición. Ingresa una queja o reclamo aquí.</p>
+                <div id="reclamo-msg" style="display:none;padding:12px;border-radius:8px;margin-bottom:15px;font-weight:bold;"></div>
+                <form id="reclamoForm" method="post">
+                    <label class="form-label" for="i_nombre">Nombre</label>
+                    <input class="form-control" type="text" id="r_nombre" name="nombre" required placeholder="Carlos Alberto">
+                    <label class="form-label" for="i_apellido">Apellido</label>
+                    <input class="form-control" type="text" id="r_apellido" name="apellido" required placeholder="Tovar Sanchez">
+                    <label class="form-label" for="i_tipoDocumento">Tipo de documento</label>
+                    <select id="r_tipoDocumento" name="tipoDocumento">
+                        <option value="">(seleccione una opción)</option>
+                        <option value="1">DNI</option>
+                        <option value="2">Carnet de Extranjería</option>
+                        <option value="3">Pasaporte</option>
+                    </select>
+                    <label class="form-label" for="i_NumDocumento">Número de documento</label>
+                    <input class="form-control" type="text" id="r_numDocumento" name="num_documento" required placeholder="60982244">
+                    <label class="form-label" for="i_email">Correo Electrónico</label>
+                    <input class="form-control" type="email" id="r_correo" name="correo" required placeholder="60982244@continental.edu.pe">
+                    <label class="form-label" for="i_Celular">Celular</label>
+                    <input class="form-control" type="text" id="r_celular" name="celular" required placeholder="978072316">
+                    <label class="form-label" for="i_tipoBien">Ingrese el tipo de Bien Contratado</label>
+                    <select id="r_tipoBien" name="tipoBien">
+                        <option value="">(seleccione una opción)</option>
+                        <option value="1">Producto</option>
+                        <option value="2">Servicio</option>
+                    </select>
+                    <textarea name="i_reclamoExp" id="r_descripcionBien" rows="5" cols="30" placeholder="Puedes describir el bien contratado"></textarea>
+                    <label class="form-label" for="i_DetalleReclamo">Ingrese Detalles del Reclamo</label>
+                    <select id="r_tipoReclamo" name="DetalleReclamo">
+                        <option value="">(seleccione una opción)</option>
+                        <option value="1">Reclamo</option>
+                        <option value="2">Queja</option>
+                    </select>
+                    <textarea name="i_DetallereclamoExp" id="r_detalleReclamo" rows="5" cols="30" placeholder="Puedes escribir el detalle del reclamo"></textarea>
+                    <label class="form-label" for="i_ActionReclamo">Ingrese la acción tomada por nuestro representante</label>
+                    <textarea name="i_ActionReclamo" id="r_accionTomada" rows="5" cols="30" placeholder="Puedes la acción tomada por nuestro representante"></textarea>
+                        <button type="submit" class="btnExotico" value="Submit"> ENVIAR</button>
+                </form>
+                <script>
+                document.getElementById('reclamoForm').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const msg = document.getElementById('reclamo-msg');
+                    const data = {
+                        nombre: document.getElementById('r_nombre').value,
+                        apellido: document.getElementById('r_apellido').value,
+                        tipo_documento: document.getElementById('r_tipoDocumento').value,
+                        num_documento: document.getElementById('r_numDocumento').value,
+                        correo: document.getElementById('r_correo').value,
+                        celular: document.getElementById('r_celular').value,
+                        tipo_bien: document.getElementById('r_tipoBien').value,
+                        descripcion_bien: document.getElementById('r_descripcionBien').value,
+                        tipo_reclamo: document.getElementById('r_tipoReclamo').value,
+                        detalle_reclamo: document.getElementById('r_detalleReclamo').value,
+                        accion_tomada: document.getElementById('r_accionTomada').value
+                    };
+                    try {
+                        const res = await fetch('http://localhost:3000/api/reclamaciones', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        const json = await res.json();
+                        if (res.ok) {
+                            msg.style.background = '#d4edda';
+                            msg.style.color = '#155724';
+                            msg.style.display = 'block';
+                            msg.textContent = 'Reclamación registrada correctamente. Nos pondremos en contacto.';
+                            this.reset();
+                        } else {
+                            msg.style.background = '#f8d7da';
+                            msg.style.color = '#721c24';
+                            msg.style.display = 'block';
+                            msg.textContent = json.error || 'Ocurrió un error. Inténtalo de nuevo.';
+                        }
+                    } catch (err) {
+                        msg.style.background = '#f8d7da';
+                        msg.style.color = '#721c24';
+                        msg.style.display = 'block';
+                        msg.textContent = 'No se pudo conectar al servidor. Verifica tu conexión.';
+                    }
+                });
+                </script>
+            </fieldset>
+        </div>
+    </main>
+    <footer class="Pie-pagina">
+        <div class="grupo-1">
+            <div class="boxfooter">
+                <figure>
+                    <a href="#">
+                        <img src="assets/Images/triad-footer.png" alt="Logo de Triad">
+                    </a>
+                </figure>
+            </div>
+            <div class="boxfooter">
+                <h2>CONTÁCTANOS</h2>
+                <p>Celular: 977 562 351</p>
+                <p>E-mail: hola@agenciatriad.com</p>
+                <p>Ubícanos: Jr. Parra del Riego 1549 Urb La Florida El Tambo-Huancayo</p>
+            </div>
+            <div class="boxfooter">
+                <h2>HORARIOS DE ATENCIÓN</h2>
+                <p>Lun a Vie: De 9:00 a.m. a 1:00 p.m.</p>
+                <p>De 3:00 p.m. a 1:00 p.m. </p>
+                <h3>LIBRO DE RECLAMACIONES</h3>
+            </div>
+            <div class="boxfooter">
+                <h2>REDES SOCIALES</h2>
+                <div class="red-social">
+                    <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-facebook"target="_blank" title="Facebook"></a>
+                    <a href="https://www.instagram.com/triadagenciademarketing/" class="fa fa-instagram"target="_blank" title="Instagram"></a>
+                    <a href="https://www.facebook.com/TRIADagenciademarketing?_rdc=1&_rdr" class="fa fa-linkedin"target="_blank" title="Linkedin"></a>
+                    <a href="https://www.youtube.com/@TRIADAGENCIADEMARKETING" class="fa fa-youtube"target="_blank" title="Youtube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>&copy; 2024 <b>TRIAD</b> - Todos los Derechos Reservados. </p></small>
+        </div>
+    </footer>
+    
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        if(hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+    </script>
+</body>
+</html>
